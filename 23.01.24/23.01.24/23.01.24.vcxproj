@@ -128,10 +128,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="23.01.24.cpp" />
+    <ClCompile Include="fraction.cpp" />
+    <ClCompile Include="group.cpp" />
     <ClCompile Include="stu.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="frac.h" />
     <ClInclude Include="stu.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

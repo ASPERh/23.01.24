@@ -1,5 +1,4 @@
 ﻿#include "stu.h"
-#include "frac.h"
 using namespace std;
 
 class Date {
@@ -24,7 +23,7 @@ public:
     }
     void SetDay(unsigned short day)
     {
-        if (day == 0 || day > 31) throw "ERROR!!! The day must be from 0 to 31 !!!";
+        if (day == 0 || day > 31) throw "От 1 до 31";
         this->day = day;
     }
     unsigned short GetDay() const
@@ -33,7 +32,7 @@ public:
     }
     void SetMonth(unsigned short month)
     {
-        if (month == 0 || month > 12) throw "ERROR!!! The day must be from 1 to 12 !!!";
+        if (month == 0 || month > 12) throw "От 1 до 12";
         this->month = month;
     }
 
@@ -90,11 +89,11 @@ public:
 
     void ShowGroup()
     {
-        cout << "Group: " << groupName << ", Specialization: " << groupSpecialization << "\n";
-        cout << "Students:\n";
+        cout << "Группа: " << groupName << ", Спецализация: " << groupSpecialization << "\n";
+        cout << "Студенты:\n";
         for (int i = 0; i < studentCount; i++)
         {
-            cout << "Student " << i + 1 << ":\n";
+            cout << "Студент " << i + 1 << ":\n";
             students[i]->PrintStudent();
             cout << "\n";
         }
@@ -174,7 +173,7 @@ public:
 
             if (!passedExam)
             {
-                cout << "Expelling student " << students[i]->GetName() << " for failing exam.\n";
+                cout << "Вычисляем студента " << students[i]->GetName() << " за провал экзамена\n";
                 delete students[i];
             }
             else
@@ -192,7 +191,7 @@ public:
     {
         if (studentCount == 0)
         {
-            cout << "No students in the group to expel.\n";
+            cout << "Нет студентов на вычесление\n";
             return;
         }
 
@@ -208,7 +207,7 @@ public:
             }
         }
 
-        cout << "Expelling the least performing student " << students[minIndex]->GetName() << "\n";
+        cout << "Вычисляем студента " << students[minIndex]->GetName() << "\n";
         delete students[minIndex];
 
         for (int i = minIndex; i < studentCount - 1; ++i)
@@ -296,11 +295,11 @@ ostream& operator << (ostream& o, Student s)
 
 ostream& operator << (ostream& o, Group& g)
 {
-    cout << "Group: " << g.groupName << ", Specialization: " << g.groupSpecialization << "\n";
+    cout << "Группа: " << g.groupName << ", Спецализцаия: " << g.groupSpecialization << "\n";
     cout << "Students:\n";
     for (int i = 0; i < g.studentCount; i++)
     {
-        cout << "Student " << i + 1 << ":\n";
+        cout << "Студент " << i + 1 << ":\n";
         g.students[i]->PrintStudent();
         cout << "\n";
     }
@@ -309,9 +308,9 @@ ostream& operator << (ostream& o, Group& g)
 
 istream& operator>>(istream& i, Group& g)
 {
-    cout << "Enter group name: ";
+    cout << "Название группы: ";
     cin >> g.groupName;
-    cout << "Enter group specialization: ";
+    cout << "Спецалиазция группы: ";
     cin >> g.groupSpecialization;
     return cin;
 }
@@ -327,7 +326,7 @@ bool operator > (Group& g, Group& g2)
 {
     if (g.GetStudentCount() > g2.GetStudentCount())
     {
-        cout << "First group greater then second\n";
+        cout << "Первая группа больше чем вторая\n";
         return true;
     }
     return false;
@@ -337,7 +336,7 @@ bool operator < (Group& g, Group& g2)
 {
     if (g.GetStudentCount() < g2.GetStudentCount())
     {
-        cout << "First group less then second\n";
+        cout << "Первая группа меньше второй\n";
         return true;
     }
     return false;
@@ -347,7 +346,7 @@ bool operator >= (Group& g, Group& g2)
 {
     if (g.GetStudentCount() >= g2.GetStudentCount())
     {
-        cout << "First group greater or equal then second\n";
+        cout << "Первая группа больше или равняется второй\n";
         return true;
     }
     return false;
@@ -357,7 +356,7 @@ bool operator <= (Group& g, Group& g2)
 {
     if (g.GetStudentCount() <= g2.GetStudentCount())
     {
-        cout << "First group less or equal then second\n";
+        cout << "Первая группа меньше или равняется второй\n";
         return true;
     }
     return false;
@@ -367,7 +366,7 @@ bool operator == (Group& g, Group& g2)
 {
     if (g.GetStudentCount() == g2.GetStudentCount())
     {
-        cout << "First group equal to second\n";
+        cout << "Первая группа равняется второй\n";
         return true;
     }
     return false;
@@ -382,7 +381,7 @@ bool operator < (Student& s, Student& s2)
 {
     if (s.CalculateAverageGrade() < s2.CalculateAverageGrade())
     {
-        cout << "The first student has a lower average score than the second\n";
+        cout << "У первого стуенда средний счет меньше или равняется счету второго стуендта\n";
         return true;
     }
     return false;
@@ -392,7 +391,7 @@ bool operator > (Student& s, Student& s2)
 {
     if (s.CalculateAverageGrade() > s2.CalculateAverageGrade())
     {
-        cout << "The first student has a higher average score than the second\n";
+        cout << "У первого стуенда средний счет больше или равняется счету второго стуендта\n";
         return true;
     }
     return false;
@@ -402,7 +401,7 @@ bool operator <= (Student& s, Student& s2)
 {
     if (s.CalculateAverageGrade() <= s2.CalculateAverageGrade())
     {
-        cout << "The first student has a lower or equal average score than the second\n";
+        cout << "У первого стуенда счет меньше или равняется счету второго стуендта\n";
         return true;
     }
     return false;
@@ -412,7 +411,7 @@ bool operator >= (Student& s, Student& s2)
 {
     if (s.CalculateAverageGrade() >= s2.CalculateAverageGrade())
     {
-        cout << "The first student has a higher or equal average score than the second\n";
+        cout << "У первого стуенда счет больше или равняется счету второго стуендта\n";
         return true;
     }
     return false;
@@ -422,7 +421,7 @@ bool operator == (Student& s, Student& s2)
 {
     if (s.CalculateAverageGrade() == s2.CalculateAverageGrade())
     {
-        cout << "Students have the same average score\n";
+        cout << "У студентов одинаковый счёт\n";
         return true;
     }
     return false;
@@ -484,6 +483,7 @@ int operator - (const Date& left, const Date& right)
 
 int main()
 {
+    setlocale(LC_ALL, "Russian");
     Student s;
     Student s2;
     Student s3;
@@ -498,8 +498,36 @@ int main()
     s3.AddHomeWork(8);
     s4.AddHomeWork(8);
 
+    s > s2;
+    s >= s2;
+    s2 < s;
+    s2 <= s;
+    s3 == s4;
+    s != s2;
+
+
     Group g;
     Group g2("P25", "prog");
+    string str = g;
+    cout << str << "\n";
+    str = s;
+    cout << str << "\n";
+    g.AddStudent(s);
+    g.AddStudent(s2);
+    g.TransferStudent(1, g2);
+    g.ExpelStudents();
+    g.ExpelBadStudent();
+
+    cin >> g;
+    g += s3;
+    cout << g << "\n";
+
+    g < g2;
+    g2 > g;
+    g <= g2;
+    g2 >= g;
+    g == g2;
+    g != g2;
 
     g.AddStudent(s);
     g.AddStudent(s2);
@@ -515,9 +543,4 @@ int main()
     Date d2(11, 4, 2024);
     int days = d - d2;
     cout << days << "\n";
-    cout << "!!!FRACTION PART!!!" << "\n";
-    Fraction a(3, 2);
-    double x = 1.3;
-    Fraction b = x + a;
-    cout << b << "\n";
 }
